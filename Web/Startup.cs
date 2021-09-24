@@ -45,7 +45,6 @@ namespace Web
             services.AddScoped<IBaseService<Restaurante>, BaseService<Restaurante>>();
             services.AddScoped<IBaseService<Pedido>, BaseService<Pedido>>();
 
-            services.AddScoped<IBaseService<Pais>, BaseService<Pais>>();
             services.AddDbContext<Contexto>(options =>
                 options.UseSqlServer(Configuration.
                 GetConnectionString("DefaultConnection")));
