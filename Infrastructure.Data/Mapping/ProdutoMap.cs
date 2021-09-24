@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Infrastructure.Data.Mapping
 {
-    public class ProdutorMap : IEntityTypeConfiguration<Produto>
+    public class ProdutoMap : IEntityTypeConfiguration<Produto>
     {
         public void Configure(EntityTypeBuilder<Produto> builder)
         {
