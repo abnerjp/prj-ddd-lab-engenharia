@@ -18,6 +18,7 @@ namespace Infrastructure.Data.Context
 
         public DbSet<Cidade> Cidades { get; set; }
 
+        public DbSet<Cozinha> Cozinhas { get; set; }
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -25,6 +26,7 @@ namespace Infrastructure.Data.Context
             base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Pais>(new PaisMap().Configure);
             modelBuilder.Entity<Cidade>(new CidadeMap().Configure);
+            modelBuilder.Entity<Cozinha>(new CozinhaMap().Configure);
         }
 
 
