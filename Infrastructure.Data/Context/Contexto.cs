@@ -22,6 +22,8 @@ namespace Infrastructure.Data.Context
 
         public DbSet<Produto> Produtos { get; set; }
 
+        public DbSet<Restaurante> Restaurantes { get; set; }
+
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -29,7 +31,8 @@ namespace Infrastructure.Data.Context
             modelBuilder.Entity<Pais>(new PaisMap().Configure);
             modelBuilder.Entity<Cidade>(new CidadeMap().Configure);
             modelBuilder.Entity<Cozinha>(new CozinhaMap().Configure);
-            modelBuilder.Entity<Produto>(new ProdutoMap().Configure);
+            modelBuilder.Entity<Produto>(new ProdutoMap().Configure); 
+            modelBuilder.Entity<Restaurante>(new RestauranteMap().Configure); 
         }
 
 

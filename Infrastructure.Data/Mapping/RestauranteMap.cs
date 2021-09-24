@@ -47,13 +47,13 @@ namespace Infrastructure.Data.Mapping
                 .HasColumnName("Numero")
                 .HasColumnType("nvarchar(70)");
 
-            builder.Property(prop => prop.Cozinha.Id)
+            builder.Property(prop => prop.CozinhaId)
                 .HasConversion(prop => (int)prop, prop => prop)
                 .IsRequired()
                 .HasColumnName("CozinhaId")
                 .HasColumnType("int");
 
-            builder.Property(prop => prop.Cidade.Id)
+            builder.Property(prop => prop.CidadeId)
                 .HasConversion(prop => (int)prop, prop => prop)
                 .IsRequired()
                 .HasColumnName("CidadeId")
