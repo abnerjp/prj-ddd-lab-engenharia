@@ -29,8 +29,8 @@ namespace Infrastructure.Data.Mapping
                 .HasColumnName("Descrição")
                 .HasColumnType("nvarchar(100)");
       
-            builder.Property(prop => prop.Pais)
-                .HasConversion(prop => prop, prop => prop)
+            builder.Property(prop => prop.PaisId)
+                .HasConversion(prop => (int)prop, prop => prop)
                .IsRequired()
                .HasColumnName("PaisId")
                .HasColumnType("int");
