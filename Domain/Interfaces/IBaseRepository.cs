@@ -12,9 +12,13 @@ namespace Domain.Interfaces
     {
 
         void Inserir(TEntity obj);
+
         void Alterar(TEntity obj);
+
         void Excluir(int id);
+
         IList<TEntity> Consultar();
+
         TEntity Consultar(int id);
 
     }
