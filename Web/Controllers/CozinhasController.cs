@@ -34,7 +34,7 @@ namespace Web.Controllers
             }
         }
 
-        private CozinhaViewModel Parse(Cozinha cozinha)
+        public static CozinhaViewModel Parse(Cozinha cozinha)
         {
             return new CozinhaViewModel()
             {
@@ -44,7 +44,7 @@ namespace Web.Controllers
             };
         }
 
-        private Cozinha Parse(CozinhaViewModel cozinha)
+        public static Cozinha Parse(CozinhaViewModel cozinha)
         {
             return new Cozinha()
             {
@@ -98,6 +98,8 @@ namespace Web.Controllers
             }
             catch
             {
+                ViewBag.ErroGravar = "Ocorreu um erro e os dados não foram salvos";
+
                 return View();
             }
         }
@@ -129,6 +131,8 @@ namespace Web.Controllers
             }
             catch
             {
+                ViewBag.ErroGravar = "Ocorreu um erro e os dados não foram salvos";
+
                 return View(Parse(cozinha));
             }
         }
@@ -160,7 +164,10 @@ namespace Web.Controllers
             }
             catch
             {
-                return View(Parse(pais));
+                CozinhaViewModel cozinhaVm = Parse((Execute(() => _baseService.ListarPorId(id)) as OkObjectResult).Value as Cozinha);
+                ViewBag.ErroExcluir = "Erro durante a exclusão";
+
+                return cozinhaVm == null ? RedirectToAction(nameof(Index)) : View(cozinhaVm);
             }
         }
     }

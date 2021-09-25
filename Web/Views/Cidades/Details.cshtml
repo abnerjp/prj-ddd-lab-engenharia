@@ -1,13 +1,12 @@
 ﻿@model Web.Models.CidadeViewModel
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Details - Cidade";
 }
 
-<h1>Details</h1>
 
 <div>
-    <h4>CidadeViewModel</h4>
+    <h4>Details - Cidade</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -37,6 +36,6 @@
     </dl>
 </div>
 <div>
-    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
     <a asp-action="Index">Back to List</a>
 </div>

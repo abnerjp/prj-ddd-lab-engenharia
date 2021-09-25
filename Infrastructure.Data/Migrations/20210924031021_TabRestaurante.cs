@@ -28,13 +28,13 @@ namespace Infrastructure.Data.Migrations
                         column: x => x.CidadeId,
                         principalTable: "Cidade",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Restaurante_Cozinha_CozinhaId",
                         column: x => x.CozinhaId,
                         principalTable: "Cozinha",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

@@ -24,7 +24,7 @@ namespace Infrastructure.Data.Migrations
                         column: x => x.PaisId,
                         principalTable: "Pais",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateIndex(

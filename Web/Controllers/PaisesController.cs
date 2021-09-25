@@ -15,7 +15,6 @@ namespace Web.Controllers
     {
         private IBaseService<Pais> _baseService;
 
-
         public PaisesController(IBaseService<Pais> baseService)
         {
             _baseService = baseService;
@@ -33,8 +32,7 @@ namespace Web.Controllers
                 return BadRequest(e);
             }
         }
-
-        private PaisViewModel Parse(Pais pais)
+        public static PaisViewModel Parse(Pais pais)
         {
             return new PaisViewModel()
             {
@@ -44,7 +42,7 @@ namespace Web.Controllers
             };
         }
 
-        private Pais Parse(PaisViewModel pais)
+        public static Pais Parse(PaisViewModel pais)
         {
             return new Pais()
             {
@@ -98,6 +96,8 @@ namespace Web.Controllers
             }
             catch
             {
+                ViewBag.ErroGravar = "Ocorreu um erro e os dados não foram salvos";
+
                 return View();
             }
         }
@@ -129,6 +129,8 @@ namespace Web.Controllers
             }
             catch
             {
+                ViewBag.ErroGravar = "Ocorreu um erro e os dados não foram salvos";
+
                 return View(Parse(pais));
             }
         }
@@ -138,10 +140,7 @@ namespace Web.Controllers
         {
             PaisViewModel pais = Parse((Execute(() => _baseService.ListarPorId(id)) as OkObjectResult).Value as Pais);
 
-            if (pais == null)
-                return NotFound();
-
-            return View(pais);
+            return pais == null ? NotFound() : View(pais);
         }
 
         // POST: PaisesController/Delete/5
@@ -160,7 +159,10 @@ namespace Web.Controllers
             }
             catch
             {
-                return View(Parse(pais));
+                PaisViewModel paisVm = Parse((Execute(() => _baseService.ListarPorId(id)) as OkObjectResult).Value as Pais);
+                ViewBag.ErroExcluir = "Erro durante a exclusão";
+
+                return paisVm == null ? RedirectToAction(nameof(Index)) : View(paisVm);
             }
         }
     }

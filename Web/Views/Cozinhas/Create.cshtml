@@ -1,12 +1,11 @@
 ﻿@model Web.Models.CozinhaViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create - Cozinha";
 }
 
-<h1>Create</h1>
+<h4>Create - Cozinha</h4>
 
-<h4>CozinhaViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -32,6 +31,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<p style="color: red">@ViewBag.ErroGravar</p>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

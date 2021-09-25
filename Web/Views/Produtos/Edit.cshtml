@@ -1,12 +1,11 @@
-﻿@model Web.Models.ProtudoViewlModel
+﻿@model Web.Models.ProdutoViewModel
 
 @{
-    ViewData["Title"] = "Edit";
+    ViewData["Title"] = "Edit - Produto";
 }
 
-<h1>Edit</h1>
+<h4>Edit - Produto</h4>
 
-<h4>ProtudoViewlModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -37,6 +36,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<p style="color: red">@ViewBag.ErroGravar</p>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

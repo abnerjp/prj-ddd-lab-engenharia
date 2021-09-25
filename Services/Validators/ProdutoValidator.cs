@@ -20,7 +20,7 @@ namespace Services.Validators
             RuleFor(c => c.Preco)
                 .NotEmpty().WithMessage("Informe um preço para o produto!")
                 .NotNull().WithMessage("Informe um preço para o produto!")
-                .LessThan(0.0).WithMessage("Preço deve ser igual ou maior do que zero!");
+                .GreaterThanOrEqualTo(0.0).WithMessage("Preço deve ser igual ou maior do que zero!");
         }
     }
 }

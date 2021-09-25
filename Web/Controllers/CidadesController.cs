@@ -14,11 +14,16 @@ namespace Web.Controllers
     public class CidadesController : Controller
     {
         private IBaseService<Cidade> _baseService;
+        private IBaseService<Pais> _baseServicePais;
 
+        private readonly IEnumerable<PaisViewModel> Paises;
 
-        public CidadesController(IBaseService<Cidade> baseService)
+        public CidadesController(IBaseService<Cidade> baseService, IBaseService<Pais> baseServicePais)
         {
             _baseService = baseService;
+            _baseServicePais = baseServicePais;
+
+            Paises = getPaises();
         }
 
         private IActionResult Execute(Func<object> func)
@@ -34,7 +39,7 @@ namespace Web.Controllers
             }
         }
 
-        private CidadeViewModel Parse(Cidade cidade)
+        public static CidadeViewModel Parse(Cidade cidade)
         {
             return new CidadeViewModel()
             {
@@ -45,7 +50,7 @@ namespace Web.Controllers
             };
         }
 
-        private Cidade Parse(CidadeViewModel cidade)
+        public static Cidade Parse(CidadeViewModel cidade)
         {
             return new Cidade()
             {
@@ -56,6 +61,14 @@ namespace Web.Controllers
             };
         }
 
+        private IEnumerable<PaisViewModel> getPaises()
+        {
+            return from pais in
+                            (Execute(() => _baseServicePais.Listar()) as OkObjectResult).Value
+                            as List<Pais>
+                   select PaisesController.Parse(pais);
+        }
+
         // GET: CidadesController
         public ActionResult Index()
         {
@@ -63,6 +76,8 @@ namespace Web.Controllers
                             (Execute(() => _baseService.Listar()) as OkObjectResult).Value
                             as List<Cidade>
                         select Parse(cidade);
+
+            ViewBag.Paises = Paises;
 
             return View(dados);
         }
@@ -81,6 +96,8 @@ namespace Web.Controllers
         // GET: CidadesController/Create
         public ActionResult Create()
         {
+            ViewBag.Paises = Paises;
+
             return View();
         }
 
@@ -100,6 +117,9 @@ namespace Web.Controllers
             }
             catch
             {
+                ViewBag.Paises = Paises;
+                ViewBag.ErroGravar = "Ocorreu um erro e os dados não foram salvos";
+
                 return View();
             }
         }
@@ -111,6 +131,8 @@ namespace Web.Controllers
 
             if (cidade == null)
                 return NotFound();
+
+            ViewBag.Paises = Paises;
 
             return View(cidade);
         }
@@ -131,6 +153,9 @@ namespace Web.Controllers
             }
             catch
             {
+                ViewBag.Paises = Paises;
+                ViewBag.ErroGravar = "Ocorreu um erro e os dados não foram salvos";
+
                 return View(Parse(cidade));
             }
         }
@@ -162,7 +187,10 @@ namespace Web.Controllers
             }
             catch
             {
-                return View(Parse(cidade));
+                CidadeViewModel cidadeVm = Parse((Execute(() => _baseService.ListarPorId(id)) as OkObjectResult).Value as Cidade);
+                ViewBag.ErroExcluir = "Erro durante a exclusão";
+
+                return cidadeVm == null ? RedirectToAction(nameof(Index)) : View(cidadeVm);
             }
         }
     }

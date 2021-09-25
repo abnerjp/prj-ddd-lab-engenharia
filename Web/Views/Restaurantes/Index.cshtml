@@ -1,0 +1,98 @@
+﻿@model IEnumerable<Web.Models.RestauranteViewModel>
+
+@{
+    ViewData["Title"] = "Restaurantes";
+    var cidades = ViewBag.Cidades;
+    var cozinhas = ViewBag.Cozinhas;
+}
+
+<h1>Restaurantes</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nome)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Cep)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Bairro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Logradouro)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Numero)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CozinhaId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CidadeId)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nome)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Cep)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Bairro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Logradouro)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Numero)
+                </td>
+                <td>
+                    @{
+                        foreach (CozinhaViewModel cozinha in cozinhas)
+                        {
+                            if (cozinha.Id == item.CozinhaId)
+                            {
+                                @Html.DisplayFor(modelItem => cozinha.Nome)
+                                break;
+                            }
+                        }
+                    }
+                </td>
+                <td>
+                    @{
+                        foreach (CidadeViewModel cidade in cidades)
+                        {
+                            if (cidade.Id == item.CidadeId)
+                            {
+                                @Html.DisplayFor(modelItem => cidade.Nome)
+                                break;
+                            }
+                        }
+                    }
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

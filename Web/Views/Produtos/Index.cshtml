@@ -1,10 +1,10 @@
-﻿@model IEnumerable<Web.Models.PaisViewModel>
+﻿@model IEnumerable<Web.Models.ProdutoViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Index - Produtos";
 }
 
-<h1>Index</h1>
+<h1>Produtos</h1>
 
 <p>
     <a asp-action="Create">Create New</a>
@@ -19,7 +19,10 @@
                 @Html.DisplayNameFor(model => model.Nome)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Sigla)
+                @Html.DisplayNameFor(model => model.Descricao)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Preco)
             </th>
             <th></th>
         </tr>
@@ -34,7 +37,10 @@
                 @Html.DisplayFor(modelItem => item.Nome)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Sigla)
+                @Html.DisplayFor(modelItem => item.Descricao)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Preco)
             </td>
             <td>
                 @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |

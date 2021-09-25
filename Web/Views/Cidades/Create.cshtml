@@ -1,12 +1,12 @@
 ﻿@model Web.Models.CidadeViewModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Create - Cidade";
+    var paises = ViewBag.Paises;
 }
 
-<h1>Create</h1>
+<h4>Create - Cidade</h4>
 
-<h4>CidadeViewModel</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -24,7 +24,14 @@
             </div>
             <div class="form-group">
                 <label asp-for="PaisId" class="control-label"></label>
-                <input asp-for="PaisId" class="form-control" />
+                <select asp-for="PaisId" class="form-control">
+                    @{
+                        foreach (PaisViewModel pais in paises)
+                        {
+                            <option value="@pais.Id">@pais.Nome</option>
+                        }
+                    }
+                </select>
                 <span asp-validation-for="PaisId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -37,6 +44,7 @@
 <div>
     <a asp-action="Index">Back to List</a>
 </div>
+<p style="color: red">@ViewBag.ErroGravar</p>
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}

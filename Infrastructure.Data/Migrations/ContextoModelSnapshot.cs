@@ -215,7 +215,7 @@ namespace Infrastructure.Data.Migrations
                     b.HasOne("Domain.Entities.Pais", "Pais")
                         .WithMany()
                         .HasForeignKey("PaisId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Pais");
@@ -226,13 +226,13 @@ namespace Infrastructure.Data.Migrations
                     b.HasOne("Domain.Entities.Produto", "Produto")
                         .WithMany()
                         .HasForeignKey("ProdutoId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Restaurante", "Restaurante")
                         .WithMany()
                         .HasForeignKey("RestauranteId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Produto");
@@ -245,13 +245,13 @@ namespace Infrastructure.Data.Migrations
                     b.HasOne("Domain.Entities.Cidade", "Cidade")
                         .WithMany()
                         .HasForeignKey("CidadeId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.HasOne("Domain.Entities.Cozinha", "Cozinha")
                         .WithMany()
                         .HasForeignKey("CozinhaId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("Cidade");

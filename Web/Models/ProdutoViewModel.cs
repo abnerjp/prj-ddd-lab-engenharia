@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Web.Models
 {
-    public class ProtudoViewlModel
+    public class ProdutoViewModel
     {
         public int Id { get; set; }
 
