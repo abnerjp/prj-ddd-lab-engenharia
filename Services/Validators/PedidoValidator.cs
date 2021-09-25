@@ -20,17 +20,17 @@ namespace Services.Validators
             RuleFor(c => c.Quantidade)
                .NotEmpty().WithMessage("Informe a quantidade!")
                .NotNull().WithMessage("Informe a quantidade!")
-               .LessThan(0.0).WithMessage("A quantidade deve ser igual ou maior do que zero!");
+               .GreaterThanOrEqualTo(0.0).WithMessage("A quantidade deve ser igual ou maior do que zero!");
 
             RuleFor(c => c.Desconto)
                .NotEmpty().WithMessage("Informe o desconto!")
                .NotNull().WithMessage("Informe o desconto!")
-               .LessThan(0.0).WithMessage("O desconto deve ser igual ou maior do que zero!");
+               .GreaterThanOrEqualTo(0.0).WithMessage("O desconto deve ser igual ou maior do que zero!");
 
             RuleFor(c => c.TaxaFrete)
                .NotEmpty().WithMessage("Informe o valor do frete!")
                .NotNull().WithMessage("Informe o valor do frete!")
-               .LessThan(0.0).WithMessage("O valor do frete deve ser igual ou maior do que zero!");
+               .GreaterThanOrEqualTo(0.0).WithMessage("O valor do frete deve ser igual ou maior do que zero!");
 
             RuleFor(c => c.RestauranteId)
                .NotEmpty().WithMessage("Informe o restaurante!")
